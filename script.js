@@ -123,8 +123,40 @@ async function sendToWebhook(message) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         
-        // Try to extract message from various possible response formats
-        return data.message || data.response || data.text || JSON.stringify(data);
+        // Parse the response and extract the actual message
+        let message = '';
+        
+        // Check for 'output' field (your webhook format)
+        if (data.output) {
+            message = data.output;
+        }
+        // Check for other common response formats
+        else if (data.message) {
+            message = data.message;
+        }
+        else if (data.response) {
+            message = data.response;
+        }
+        else if (data.text) {
+            message = data.text;
+        }
+        else if (typeof data === 'string') {
+            message = data;
+        }
+        else {
+            // If none of the above, stringify the whole response
+            message = JSON.stringify(data);
+        }
+        
+        // Clean up escaped quotes and newlines for better readability
+        if (typeof message === 'string') {
+            message = message
+                .replace(/\\n/g, '\n')  // Convert \n to actual newlines
+                .replace(/\\"/g, '"')   // Convert \" to "
+                .replace(/\\\\/g, '\\'); // Convert \\ to \
+        }
+        
+        return message;
     } catch (error) {
         throw new Error(`${error.message}`);
     }
@@ -148,6 +180,8 @@ function addMessage(text, type) {
     
     const content = document.createElement('div');
     content.className = 'message-content';
+    // Use innerText to preserve line breaks, or convert \n to <br> for HTML
+    content.style.whiteSpace = 'pre-wrap'; // Preserve whitespace and line breaks
     content.textContent = text;
     
     messageDiv.appendChild(avatar);
