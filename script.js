@@ -1,25 +1,33 @@
-const WEBHOOK_URL = 'https://90ua0si2.rpcld.net/webhook/ffb578b0-75d8-4631-ac6a-f43b93bb7501';
+const WEBHOOK_URL = 'https://90ua0si2.rpcld.net/webhook/test/ffb578b0-75d8-4631-ac6a-f43b93bb7501';
 
-const chatMessages = document.getElementById('chatMessages');
-const messageInput = document.getElementById('messageInput');
-const sendButton = document.getElementById('sendButton');
+let chatMessages, messageInput, sendButton;
 
-// Auto-resize textarea
-messageInput.addEventListener('input', function() {
-    this.style.height = 'auto';
-    this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    chatMessages = document.getElementById('chatMessages');
+    messageInput = document.getElementById('messageInput');
+    sendButton = document.getElementById('sendButton');
+
+    // Auto-resize textarea
+    messageInput.addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+    });
+
+    // Send message on Enter (Shift+Enter for new line)
+    messageInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+
+    // Send button click
+    sendButton.addEventListener('click', sendMessage);
+    
+    // Focus input on load
+    messageInput.focus();
 });
-
-// Send message on Enter (Shift+Enter for new line)
-messageInput.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        sendMessage();
-    }
-});
-
-// Send button click
-sendButton.addEventListener('click', sendMessage);
 
 function sendMessage() {
     const message = messageInput.value.trim();
@@ -221,7 +229,3 @@ function addTypingIndicator() {
     
     return typingDiv;
 }
-
-// Focus input on load
-messageInput.focus();
-
