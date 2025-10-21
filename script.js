@@ -124,39 +124,39 @@ async function sendToWebhook(message) {
         }
         
         // Parse the response and extract the actual message
-        let message = '';
+        let responseMessage = '';
         
         // Check for 'output' field (your webhook format)
         if (data.output) {
-            message = data.output;
+            responseMessage = data.output;
         }
         // Check for other common response formats
         else if (data.message) {
-            message = data.message;
+            responseMessage = data.message;
         }
         else if (data.response) {
-            message = data.response;
+            responseMessage = data.response;
         }
         else if (data.text) {
-            message = data.text;
+            responseMessage = data.text;
         }
         else if (typeof data === 'string') {
-            message = data;
+            responseMessage = data;
         }
         else {
             // If none of the above, stringify the whole response
-            message = JSON.stringify(data);
+            responseMessage = JSON.stringify(data);
         }
         
         // Clean up escaped quotes and newlines for better readability
-        if (typeof message === 'string') {
-            message = message
+        if (typeof responseMessage === 'string') {
+            responseMessage = responseMessage
                 .replace(/\\n/g, '\n')  // Convert \n to actual newlines
                 .replace(/\\"/g, '"')   // Convert \" to "
                 .replace(/\\\\/g, '\\'); // Convert \\ to \
         }
         
-        return message;
+        return responseMessage;
     } catch (error) {
         throw new Error(`${error.message}`);
     }
