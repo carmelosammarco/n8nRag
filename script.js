@@ -1,4 +1,4 @@
-const WEBHOOK_URL = 'https://90ua0si2.rpcld.net/webhook/test/ffb578b0-75d8-4631-ac6a-f43b93bb7501';
+const WEBHOOK_URL = 'You must paste the url of your webhook here';
 
 let chatMessages, messageInput, sendButton;
 
