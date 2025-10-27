@@ -1,4 +1,4 @@
-const WEBHOOK_URL = 'https://c1lr0iaw.rpcld.net/webhook/31c6e27f-ebf4-4e28-93b8-637e4d29b967';
+const WEBHOOK_URL = 'https://c1lr0iaw.rpcld.net/webhook-test/24a24710-cd8e-4e86-a670-b8a8ff933d35';
 
 let chatMessages, messageInput, sendButton;
 
