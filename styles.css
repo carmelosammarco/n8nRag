@@ -248,6 +248,37 @@ body {
     border-top: 1px solid #e2e8f0;
 }
 
+.data-ingest-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 20px;
+    margin-top: 12px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+}
+
+.data-ingest-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+}
+
+.data-ingest-button:active {
+    transform: translateY(0);
+}
+
+.data-ingest-button svg {
+    flex-shrink: 0;
+}
+
 .input-wrapper {
     display: flex;
     gap: 12px;

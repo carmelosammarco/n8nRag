@@ -1,4 +1,4 @@
-const WEBHOOK_URL = 'https://racheal-postasthmatic-irrigably.ngrok-free.dev/webhook/6d93b173-22c3-425d-961d-ab3a0b9b5bf8';
+const WEBHOOK_URL = 'https://vx9s00n4.rpcld.net/webhook/6d93b173-22c3-425d-961d-ab3a0b9b5bf8';
 
 let chatMessages, messageInput, sendButton;
 
